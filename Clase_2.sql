@@ -40,7 +40,7 @@ SELECT COUNT(id_system_user) AS comments, id_system_user FROM commentary GROUP B
 SELECT COUNT(id_system_user) AS comments, id_system_user FROM commentary
 GROUP BY id_system_user
 HAVING comments > 2;
--- selección de dos o más tablas (sin alias)
+-- Selección de dos o más tablas (sin alias)
 select 
 g.id_game, 
 c.id_game,
@@ -50,7 +50,7 @@ c.commentary
 from game as g
 left join commentary 
 on c.id_game = g.id_game;
--- selección de dos o más tablas (con alias)
+-- Selección de dos o más tablas (con alias)
 select 
 g.id_game as id_g_c, 
 c.id_game as id_g_c,
