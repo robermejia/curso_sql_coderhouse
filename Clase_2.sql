@@ -1,3 +1,4 @@
+-- Active: 1722114782014@@127.0.0.1@3306@gammers
 #### CLASE 2 (Creación de BD y primeras consultas)#####
 -- Creación de una BD
 create database nombre_bd;
@@ -48,7 +49,7 @@ g.name,
 g.description,
 c.commentary
 from game as g
-left join commentary 
+left join commentary c
 on c.id_game = g.id_game;
 -- Selección de dos o más tablas (con alias)
 select 
