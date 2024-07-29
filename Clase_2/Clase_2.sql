@@ -3,7 +3,18 @@
 -- Creación de una BD
 create database nombre_bd;
 -- Posicionarse en la bd creada
+use nombre_bd;
 use gammers;
+-- Crear tabla con campos
+create table nombre_tabla (
+    Id_nombre int primary key not null,
+    campo_1 varchar (30) not null,
+    campo_2 decimal (3,2),
+    campo_3 date 
+);
+-- Insertar registros en tabla
+insert into nombre_tabla(Id_nombre, campo1, campos2, campo3)
+    value (1, "valor1", 123.00, "2024-01-01");
 -- Seleccion en particular
 select id_class,description from class;
 -- Selección a toda la tabla
