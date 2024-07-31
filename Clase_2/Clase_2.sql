@@ -1,54 +1,94 @@
--- Active: 1722114782014@@127.0.0.1@3306@gammers
-#### CLASE 2 (Creación de BD y primeras consultas)#####
--- Creación de una BD
-create database nombre_bd;
--- Posicionarse en la bd creada
-use nombre_bd;
-use gammers;
--- Crear tabla con campos
+-- Active: 1722113607352@@127.0.0.1@3306@gammers
+################################## CLASE 2 (Creación de BD y primeras consultas)#####################
+-- CREACIÓN DE BD
+create database nombre_bd; -- sintaxis
+create database gammers; -- ejemplo clase
+
+-- POSICIONARSE EN UNA BD CREADA
+use nombre_bd; -- sintaxis
+use gammers; -- ejemplo clase
+
+-- CREACIÓN DE TABLA Y CAMPOS
 create table nombre_tabla (
     Id_nombre int primary key not null,
     campo_1 varchar (30) not null,
     campo_2 decimal (3,2),
     campo_3 date 
 );
--- Insertar registros en tabla
-insert into nombre_tabla(Id_nombre, campo1, campos2, campo3)
+
+-- INSERTAR REGISTROS EN UNA TABLA
+insert into nombre_tabla(Id_nombre, campo1, campos2, campo3) -- sintaxis
     value (1, "valor1", 123.00, "2024-01-01");
--- Seleccion en particular
-select id_class,description from class;
--- Selección a toda la tabla
-select * from class;
--- Evita los registros duplicados en una tabla
-select distinct nombre_campo1,nombre_campo2 from nombre_tabla;
--- Hacer una busqueda con una condición en especial
-select first_name, last_name from system_user where id_user_type = 334; -- con número
-select first_name from system_user where 'Tyson'; -- con cadenas
-select * from commentary where comment_date >= "2019-01-01"; -- con fechas y operadores
-select name, id_level from game where id_level in (14,5,9); -- operador in
+
+-- SELECCIÓN EN PARTICULAR
+select campo1, campo2 from nombre_tabla; -- sintaxis
+select id_class,description from class; -- ejemplo clase
+
+-- SELECCIÓN DE TODOS LOS CAMPOS DE UNA TABLA
+select * from nombre_tabla; -- sintaxis
+select * from class; -- ejemplo clase
+
+-- EVITAR REGISTROS DUPLICADOS DE UNA TABLA
+select distinct nombre_campo1,nombre_campo2 from nombre_tabla; -- sintaxis
+select distinct first_name from system_user; -- ejemplo clase
+
+-- HACER UNA BUSQUEDA CON UNA CONDICIÓN EN ESPECIAL
+select campo1, campo2 from nombre_tabla where campo1 = "valor1"; -- sintaxis
+select first_name, last_name from system_user where id_user_type = 334; -- ejemplo clase
+select first_name from system_user where 'Tyson'; -- ejemplo clase
+select * from commentary where comment_date >= "2019-01-01"; -- ejemplo clase
+
+-- HACER UNA BUSQUEDA CON UNA CONDICIÓN ESPECIAL, USANDO OPERADOR IN
+select campo1 from tabla1 where campo1 = valor1 in (valorx,valory,valorz); -- sintaxis
+select name, id_level from game where id_level in (14,5,9); -- ejemplo clase
 select name from game where name = 'Riders Republic' or name = 'The Dark Pictures: House Of Ashes'; -- con operadores lógicos
--- Busqueda por caracteres
-select * from game where name like "Gran%"; -- que comience con...
--- Ordenar registros segun el campo seleccionado
-select id_level, name from game order by id_level; -- odena campo seleccionado
-select id_level, name from game where id_level < 30 order by id_level; -- con condición y operadores de comparación
-select id_level, name from game where id_level < 30 order by id_level desc; -- lo mismo pero desendente
-select id_level, name from game where id_level < 30 order by id_level desc, name; -- lo mismo pero desendente
--- Haciendo una selección con limites
+
+-- BUSQUEDA DE CARACTERES CON OPERADOR LIKE
+select campo1 from where campo1 like "comience%"; -- sintaxis
+select campo1 from where campo1 like "%termine"; -- sintaxis
+select campo1 from where campo1 like "%tenga%"; -- sintaxis
+select * from game where name like "Gran%"; -- ejemplo clase
+
+-- USANDO LIMITES (restringe el número de registros)
+-- (paramétro1 = primeros registros ignorados)
+-- (paramétro2 = muestra esos registros)
+SELECT * FROM nombre_tabla ORDER BY campo1 LIMIT 3;  -- sintaxis 
+select campo1, campo2 from nombre_tabla where campo1 < un_numero order by campo1 desc limit 10; -- sintaxis
 select id_level, name from game where id_level < 30 order by id_level desc limit 10; -- solo 10 registros
-select id_level, name from game where id_level < 30 order by id_level desc limit 15,5; -- param1 se ignora, param2 se muestra
--- Uso de alias
-select id_level as nivel_del_juego, name as nombre_juego from game; -- se cambia el nombre del campo momentaneamente
--- Uso de funciones
-select count(id_class) from gammers.class; -- muestra el total de registros 
-select sum(id_class) from gammers.class; -- muestra la suma de registros 
-select avg(id_class) from gammers.class; -- muestra el promedio de registros 
--- Agrupando las selecciones
-select id_system_user as usuario from play group by id_system_user;
+select campo1, campo2 from nombre_tabla where campo1 < 30 order by campo1 desc limit 15,5; -- sintaxis 
+select id_level, name from game where id_level < 30 order by id_level desc limit 15,5; -- ejemplo clase
+SELECT * FROM commentary ORDER BY id_system_user LIMIT 3;  -- ejemplo clase
+
+-- ORDENAR REGISTROS SEGUN EL CAMPO SELECCIONADO
+select campo1 from nombre_tabla order by campo1; -- sintaxis
+select id_level, name from game order by id_level; -- ejemplo clase
+select id_level, name from game where id_level < 30 order by id_level; -- ejemplo clase
+select id_level, name from game where id_level < 30 order by id_level desc; -- ejemplo clase
+SELECT * FROM commentary ORDER BY id_system_user desc; -- ejemplo clase
+select campo1, campo2 from nombre_tabla where campo1 < numero order by campo1 desc, campo2; -- sintaxis
+select id_level, name from game where id_level < 30 order by id_level desc, name; -- ejemplo clase
+
+
+-- USANDO ALIAS
+select campo1 as alias_campo1, campo2 as alias_campo2 from nombre_tabla; -- sintaxis
+select id_level as nivel_del_juego, name as nombre_juego from game; -- ejemplo clase
+
+-- USO DE FUNCIONES
+select count(campo1) from nombre_bd.nombre_tabla; -- sintaxis (muestra total de registros)
+select count(id_class) from gammers.class; -- ejemplo clase
+SELECT COUNT(id_system_user) AS comments, id_system_user FROM commentary GROUP BY id_system_user; -- ejemplo clase
+select sum(campo1) from nombre_bd.nombre_tabla; -- sintaxis (muestra la suma de registros) 
+select sum(id_class) from gammers.class; -- ejemplo clase
+select avg(campo1) from nombre_bd.nombre_tabla; -- sintaxis (muestra el promedio de registros) 
+select avg(id_class) from gammers.class; -- ejemplo clase 
+
+-- AGRUPANDO LAS SELECCIONES (agrupa valores similares)
+select campo1 as alias_campo1 from nombre_tabla group by campo1; -- sintaxis 
+select id_system_user as usuario from play group by id_system_user; -- ejemplo clase
 -- Ejercicio en clase
-SELECT * FROM commentary ORDER BY id_system_user desc; 
-SELECT * FROM commentary ORDER BY id_system_user LIMIT 3; 
-SELECT COUNT(id_system_user) AS comments, id_system_user FROM commentary GROUP BY id_system_user;
+
+
+-- USANDO HAVING
 SELECT COUNT(id_system_user) AS comments, id_system_user FROM commentary
 GROUP BY id_system_user
 HAVING comments > 2;
