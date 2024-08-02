@@ -1,4 +1,4 @@
--- Active: 1722113607352@@127.0.0.1@3306@gammers
+-- Active: 1722556967735@@127.0.0.1@3306
 ################################## CLASE 2 (Creación de BD y primeras consultas)#####################
 -- CREACIÓN DE BD
 create database nombre_bd; -- sintaxis
@@ -88,21 +88,22 @@ select id_system_user as usuario from play group by id_system_user; -- ejemplo c
 -- Ejercicio en clase
 
 
--- USANDO HAVING
+-- USANDO HAVING (filtro adicional de group by)
 SELECT COUNT(id_system_user) AS comments, id_system_user FROM commentary
 GROUP BY id_system_user
 HAVING comments > 2;
--- Selección de dos o más tablas (sin alias)
+
+-- INTERCECCIÓN DE DOS TABLAS O MÁS
 select 
-g.id_game, 
-c.id_game,
-g.name,
-g.description,
-c.commentary
-from game as g
-left join commentary c
-on c.id_game = g.id_game;
--- Selección de dos o más tablas (con alias)
+game.id_game, 
+commentary.id_game,
+game.name,
+game.description,
+commentary.commentary
+from game 
+left join commentary 
+on commentary.id_game = game.id_game; -- sin alias
+
 select 
 g.id_game as id_g_c, 
 c.id_game as id_g_c,
@@ -111,4 +112,4 @@ g.description as descripcion_juego,
 c.commentary as comentario_juego 
 from game as g
 left join commentary as c
-on c.id_game = g.id_game;
+on c.id_game = g.id_game; -- con alias
