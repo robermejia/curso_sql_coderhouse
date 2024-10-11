@@ -44,7 +44,7 @@ BEGIN
 END;
 //
 DELIMITER ;
-SELECT agregar_días_prestamo(2, 8) AS FECHAS_PRESTAMOS_LIBROS;
+SELECT fn_agregar_días_prestamo(2, 8) AS FECHAS_PRESTAMOS_LIBROS;
 
 -- ################################### CREACIÓN DE FUNCIONES 2 #######################################
 -- FUNCIÓN VER FECHA DE NACIMIENTO DE AUTORES POR SU ID
@@ -62,4 +62,4 @@ BEGIN
 END;
 //
 DELIMITER ;
-SELECT fecha_nacimiento_autor(2) AS;
+SELECT fn_fecha_nacimiento_autor(2) AS;
