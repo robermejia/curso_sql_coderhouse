@@ -21,7 +21,7 @@ DELIMITER ;
 SHOW PROCEDURE STATUS; -- Visualizar la lista de procedimientos creadas
 UPDATE Libros SET Stock = 5 WHERE ID_Libro = 6; -- Ejecutar si ya el valor quedo en 0
 SET @cantidad = -1; -- Definir la variable @cantidad antes de llamar al procedimiento
-CALL prestamo_stock(1, 6, @cantidad); -- Ejecutando el procedimiento
+CALL sp_prestamo_stock(1, 6, @cantidad); -- Ejecutando el procedimiento
 SELECT Stock FROM Libros WHERE ID_Libro = 6; -- Comprobar el número de Stoc
 
 -- ======= PROCEDIMIENTO 2 - CATEGORÍA DE USUARIOS =======
@@ -46,7 +46,7 @@ DELIMITER ;
 
 SHOW PROCEDURE STATUS; -- Visualizar la lista de procedimientos creadas
 SET @cantidad = 0; -- Definir la variable @cantidad antes de llamar al procedimiento
-CALL tipo_lector(1); --  Ejecutando el procedimiento
+CALL sp_tipo_lector(1); --  Ejecutando el procedimiento
 
 -- ======= PROCEDIMIENTO 3 - LIBROS AL AZAR =======
 DROP PROCEDURE IF EXISTS sp_libro_azar; -- Eliminando el procedimiento si es que existe
@@ -61,5 +61,5 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL libro_azar(); -- Ejecutando el procedimiento
+CALL sp_libro_azar(); -- Ejecutando el procedimiento
 SHOW PROCEDURE STATUS; -- Visualizar la lista de procedimientos creadas
